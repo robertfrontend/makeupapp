@@ -39,12 +39,13 @@
           v-for="product in datosAPI"
           :key="product.id"
         >
-          <div class="card py-4 px-4">
+          <Card :datos="product" />
+          <!-- <div class="card py-4 px-4">
             <b-row>
               <b-col cols="12" class="text-center">
                 <img width="50%" :src="product.image_link" alt="" />
               </b-col>
-              <b-col cols="12">
+              <b-col cols="12" class="mt-2">
                 <h5>
                   <b> {{ product.name }}</b>
                 </h5>
@@ -62,7 +63,7 @@
                 <div class="spanColor" :style="'background:'+ color.hex_value" ></div>
               </b-col>
             </b-row>
-          </div>
+          </div> -->
         </b-col>
       </b-row>
     </b-container>
@@ -71,6 +72,7 @@
 
 <script>
 import axios from "axios";
+import Card from '@/components/Card.vue'
 // @ is an alias to /src
 export default {
   name: "Home",
@@ -84,7 +86,7 @@ export default {
       datosAPI: [],
     };
   },
-  components: {},
+  components: {Card},
   created() {
     console.log("cargando...");
     axios
@@ -116,9 +118,5 @@ export default {
 p {
   margin: 0;
 }
-.spanColor{
-  width: 25px;
-  height: 25px;
-  border-radius: 25px;
-}
+
 </style>

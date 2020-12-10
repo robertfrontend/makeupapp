@@ -5,21 +5,27 @@
         <h4><b>Makeup App💅</b></h4></b-col
       >
       <b-col cols="auto"
-        ><h4 class="m-0"><i class="fas fa-ellipsis-h m-0"></i></h4
+        ><h4 class="m-0"><i v-b-toggle.sidebar-1 class="fas fa-ellipsis-h px-2 m-0"></i></h4
       ></b-col>
+
+      <Sidebar />
     </b-row>
   </div>
 </template>
 
 <script>
+import Sidebar from '@/components/Sidebar.vue'
 export default {
   name: "Header",
+  components: {
+    Sidebar
+  }
 };
-</script> 
+</script>
 
 <style lang="scss" scoped>
 .header {
-  background: #F4D9E0;
+  background: #f4d9e0;
   color: white;
 }
 </style>

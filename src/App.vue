@@ -13,12 +13,20 @@ export default {
 };
 </script>
 <style lang="scss">
+body {
+  overflow-x: hidden;
+  scroll-behavior: auto;
+  scroll-behavior: smooth;
+}
+html {
+  scroll-behavior: auto;
+  scroll-behavior: smooth;
+}
 * {
   margin: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
-
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -12,27 +12,42 @@
       </b-container>
     </div>
     <b-container class="mt-4">
-      <div class="text-center">
-        <h4>Categorias</h4>
-      </div>
       <b-row class="mt-4" align-v="center" align-h="center">
-        <b-col cols="12" class="mb-4">
-          <SelectBrand @buscarBrand="buscarBrand" />
+        <b-col class="mb-4 text-center">
+          <router-link to="/todosProducto" class="">
+            <p>
+              <b
+                ><i class="far fa-hand-pointer mr-1"></i>Click para ver todoos los tipos
+                de produtos
+              </b>
+            </p>
+          </router-link>
         </b-col>
+
+        <b-col cols="12" class="text-center">
+          <h4>Categorias</h4>
+        </b-col>
+        <b-col cols="12" class="mb-4">
+          <SelectBrand @buscarSelect="buscarSelect" 
+            :optionSelect="[optionSelect]"
+           />
+        </b-col>
+        <b-col cols="12" class="text-center">
+          <span class="text-primary"
+            >
+            <i class="fas fa-arrow-down mr-1"></i>
+            Resultados de:
+           <b> {{ marcaEliga }}</b>
+          </span>
+        </b-col>
+
       </b-row>
 
       <div class="text-center mt-4">
-        <b-spinner variant="primary" v-if="loading" label="Loading..."
-          >Cargando...</b-spinner
-        >
+        <Loading v-if="loading"  />
       </div>
 
       <b-row class="mt-4" id="product">
-        <b-col cols="12">
-          <h3>
-            <b>{{ marcaEliga }}</b>
-          </h3>
-        </b-col>
         <b-col class="my-4" cols="auto" v-for="product in limiteDiez" :key="product.id">
           <Card :datos="product" />
         </b-col>
@@ -64,16 +79,20 @@
 import axios from "axios";
 import SelectBrand from "@/components/SelectBrand.vue";
 import Card from "@/components/Card.vue";
-// @ is an alias to /src
+import Loading from '../components/layout/Loading.vue';
 export default {
   name: "Home",
+  components: { Card, SelectBrand, Loading },
   data() {
     return {
-      Tags: [
+      optionSelect: [
         { value: "almay", name: "Almay" },
         { value: "alva", name: "Alva" },
         { value: "covergirl", name: "Covergirl" },
+        { value: "dalish", name: "Dalish" },
+        { value: "colourpop", name: "Colourpop" },
       ],
+    
       datosAPI: [],
       loading: false,
       error: false,
@@ -83,7 +102,6 @@ export default {
       mostrarMas: false,
     };
   },
-  components: { Card, SelectBrand },
   created() {
     this.llamarApi("almay");
     if (this.$router === "/product") {
@@ -92,7 +110,7 @@ export default {
   },
   methods: {
     // funcion del select
-    buscarBrand(dato) {
+    buscarSelect(dato) {
       this.llamarApi(dato);
     },
 
@@ -107,7 +125,7 @@ export default {
           let datos = res.data;
           this.mostrarMas = false;
 
-          console.log(res.data);
+          this.marcaEliga = url
 
           datos.map((dt) => {
             this.datosAPI.push(dt);
@@ -136,16 +154,18 @@ export default {
       this.datosAPI = array;
     },
 
+    // mostrar error cuando pase algun error
     mostrarError() {
       this.error = true;
       this.$notify.error({
         title: "Error",
         message: "Producto no encontrado",
-        position: "bottom-right",
+        position: "top-right",
       });
     },
   },
   computed: {
+    // limitar los productos
     limiteDiez() {
       let arrayLimit = this.datosAPI;
       const array = arrayLimit.slice(0, 10);

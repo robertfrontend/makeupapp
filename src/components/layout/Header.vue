@@ -2,7 +2,7 @@
   <div class="header">
     <b-row align-h="between" align-v="center" class="px-4 py-4">
       <b-col cols="auto">
-        <h4><b>Makeup App💅</b></h4></b-col
+        <router-link to="/" class="text-light"><h4><b>Makeup App💅</b></h4></router-link></b-col
       >
       <b-col cols="auto"
         ><h4 class="m-0"><i v-b-toggle.sidebar-1 class="fas fa-ellipsis-h px-2 m-0"></i></h4
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar.vue'
+import Sidebar from '@/components/layout/Sidebar.vue'
 export default {
   name: "Header",
   components: {
@@ -27,5 +27,12 @@ export default {
 .header {
   background: #f4d9e0;
   color: white;
+}
+a {
+  text-decoration: none;
+  &:focus {
+    text-decoration: none;
+    color: white !important;
+  }
 }
 </style>

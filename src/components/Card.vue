@@ -1,18 +1,19 @@
 <template>
-  <div class="card py-4 px-4">
+  <div class="card  py-3 px-4">
     <b-row>
       <b-col cols="12" class="text-center">
         <img width="50%" :src="datos.image_link" :alt="datos.brand" />
       </b-col>
-      <b-col cols="12" class="mt-2">
+      <b-col cols="12" class="mt-2 ">
         <h5>
           <b> {{ datos.name }}</b>
         </h5>
         <p>👉 {{ datos.brand }}</p>
+        <p>Tipo de Producto: {{datos.product_type }} </p>
         <p>
           $<b>{{ datos.price }}</b>
         </p>
-        <a :href="datos.website_link" target="_blank"> Ir a comprar </a>
+        <a :href="datos.product_link" target="_blank"> Ir a comprar </a>
       </b-col>
     </b-row>
     <b-row class="mt-2">
@@ -26,15 +27,11 @@
       </b-col>
       <b-col v-if="openDet" cols="12" class="mt-2">
         <p>{{ datos.description }}</p>
-        <a :href="datos.product_link" target="_blank"> Ir a comprar </a>
       </b-col>
-      <b-col cols="12" class="mt-3 text-center">
-        <span class="text-primary" @click="openDetails">
-          <i
-            :class="openDet ? 'fas fa-minus' : 'fas fa-plus'"
-            class="mr-1 py-3"
-            style="font-size: 1.5em"
-          ></i>
+      <b-col cols="12" class=" text-center">
+        <span class="text-primary cursor-pointer " @click="openDetails">
+          <template v-if="openDet === false">Ver Mas</template>
+          <template v-if="openDet === true">Ocultar</template>
         </span>
       </b-col>
     </b-row>

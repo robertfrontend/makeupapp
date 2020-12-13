@@ -1,5 +1,5 @@
 <template>
-  <div class="card  py-3 px-4">
+  <b-card  border-variant="light" class=" py-3 px-4">
     <b-row>
       <b-col cols="12" class="text-center">
         <img width="50%" :src="datos.image_link" :alt="datos.brand" />
@@ -18,7 +18,7 @@
     </b-row>
     <b-row class="mt-2">
       <b-col
-        class="my-2"
+        class="my-2 p-2"
         cols="auto"
         v-for="(color, index) in datos.product_colors"
         :key="index"
@@ -35,7 +35,7 @@
         </span>
       </b-col>
     </b-row>
-  </div>
+  </b-card>
 </template>
 
 <script>
@@ -59,8 +59,8 @@ export default {
 
 <style lang="scss" scoped>
 .spanColor {
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height:30px;
   border-radius: 25px;
 }
 p {

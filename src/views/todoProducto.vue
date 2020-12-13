@@ -1,29 +1,53 @@
 <template>
-  <div>
-    <h1>Todos los productos</h1>
-    <b-row>
-      <b-col cols="12" class="mt-3">
-        <SelectBrand
-          :selectBusqueda="false"
-          :campoBusqueda="true"
-          @buscarInput="buscarInput"
-        />
+  <b-container>
+    <b-row class="mt-4">
+      <b-col cols="12" v-for="dato in lista" :key="dato.value">
+        <ListType :datos="dato"  />
       </b-col>
     </b-row>
-  </div>
+  </b-container>
 </template>
 
 <script>
-import SelectBrand from "../components/SelectBrand.vue";
+import ListType from "@/components/ListType.vue";
 export default {
   name: "todoProducto",
-  components: { SelectBrand },
+  components: { ListType },
   data() {
-    return {};
+    return {
+      lista: [
+        {
+          title: "Tags list",
+          value: "Tags list",
+          id: 1,
+          tagsList: [
+            { value: "Canadian", label: "Canadian" },
+            { value: "CertClean", label: "CertClean" },
+            { value: "Chemical Free", label: "Chemical Free" },
+            { value: "Dairy Free", label: "Dairy Free" },
+          ],
+        },
+        {
+          title: "Brands list",
+          value: "Brands list",
+          id: 2,
+          tagsList: [
+            { value: "almay", label: "almay" },
+            { value: "alva", label: "alva" },
+            { value: "Chemical Free", label: "Chemical Free" },
+            { value: "Dairy Free", label: "Dairy Free" },
+          ],
+        },
+      ],
+      openList: false,
+    };
   },
   methods: {
-    buscarInput(dato) {
-      console.log(dato, "buscando por input");
+    abrir(dato) {
+      if (dato.id === dato.id) {
+        console.log("open open", dato);
+        this.openList = !this.openList;
+      }
     },
   },
 };

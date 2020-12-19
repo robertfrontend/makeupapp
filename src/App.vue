@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="">
     <Header />
     <router-view />
   </div>
@@ -33,6 +33,12 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
+  /* width: 450px;
+  margin: 0 auto;
+  background-color: white;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  } */
 }
 
 #nav {

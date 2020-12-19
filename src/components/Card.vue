@@ -30,7 +30,7 @@
       </b-col>
       <b-col cols="12" class=" text-center">
         <span class="text-primary cursor-pointer " @click="openDetails">
-          <template v-if="openDet === false">Ver Mas</template>
+          <template v-if="openDet === false">Detalles</template>
           <template v-if="openDet === true">Ocultar</template>
         </span>
       </b-col>

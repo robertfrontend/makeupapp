@@ -12,7 +12,7 @@
 import ListType from "@/components/ListType.vue";
 export default {
   name: "todoProducto",
-  components: { ListType },
+  components: { ListType }, 
   data() {
     return {
       lista: [
